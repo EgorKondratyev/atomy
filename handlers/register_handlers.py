@@ -1,0 +1,3 @@
+from handlers.start_command import register_start_command_handlers
+
+register_start_command_handlers()
