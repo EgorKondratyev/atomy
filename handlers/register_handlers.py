@@ -1,3 +1,5 @@
 from handlers.start_command import register_start_command_handlers
+from handlers.client.slogan import register_slogan_handlers
 
 register_start_command_handlers()
+register_slogan_handlers()

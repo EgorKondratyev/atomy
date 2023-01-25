@@ -5,7 +5,6 @@ from utils.translator.initialization import start_initialization_sentences
 
 
 async def start(_):
-    start_initialization_sentences()
     logger.debug('Бот успешно запущен!')
 
 
@@ -14,5 +13,6 @@ async def end(_):
 
 
 if __name__ == '__main__':
+    start_initialization_sentences()
     from handlers import register_handlers
     executor.start_polling(dispatcher=dp, skip_updates=True, on_startup=start, on_shutdown=end)
