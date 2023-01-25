@@ -1,9 +1,11 @@
 from aiogram import executor
 from create_bot.bot import dp
 from log.create_logger import logger
+from utils.translator.initialization import start_initialization_sentences
 
 
 async def start(_):
+    start_initialization_sentences()
     logger.debug('Бот успешно запущен!')
 
 

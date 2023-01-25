@@ -177,6 +177,16 @@ class UsersDB:
                            (user_id, ))
         return self.__cur.fetchall()
 
+    def get_language_user(self, user_id: int):
+        self.__cur.execute('SELECT language '
+                           'FROM users '
+                           'WHERE user_id = ?',
+                           (user_id, ))
+        language = self.__cur.fetchmany(1)
+        if language:
+            return language[0][0]
+        return 0
+
     def __del__(self):
         self.__cur.close()
         self.__base.close()
