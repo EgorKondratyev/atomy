@@ -59,7 +59,7 @@ class SentencesDB:
                            f'{ex}')
             return False
 
-    def update_sentence(self, type_sentence: str, sentence: str, language: bool):
+    def update_sentence(self, type_sentence: str, sentence: str, language: bool) -> bool:
         """
         Обновление предложения, которое соответствует конкретному type_sentence и language
         """
@@ -118,6 +118,47 @@ class UsersDB:
         except Exception as ex:
             logger.warning(f'Errors occurred while connecting to the users entity\n'
                            f'{ex}')
+
+    def exists_user(self, user_id: int) -> bool:
+        self.__cur.execute('SELECT user_id '
+                           'FROM users '
+                           'WHERE user_id = ?',
+                           (user_id, ))
+        return len(self.__cur.fetchmany(1)).__bool__()
+
+    def add_user(self, user_id: int, language: bool) -> bool:
+        """
+        Добавление пользователя в текущую сущность
+        """
+        try:
+            self.__cur.execute('INSERT INTO users(user_id, language) '
+                               'VALUES(?, ?)',
+                               (user_id, language))
+            self.__base.commit()
+            return True
+        except Exception as ex:
+            logger.warning(f'An error occurred when inserting data into the users entity\n'
+                           f'{ex}')
+            return False
+
+    def add_form_data(self, user_id: int, city: str, full_name: str, sex: str, birth_date: str, phone_number: str,
+                      postal_code: str, locality: str, address: str, email: str) -> bool:
+        """
+        Добавление данных о пользователе, после заполнения формы.
+        """
+        try:
+            self.__cur.execute('UPDATE users '
+                               'SET city = ?, full_name = ?, sex = ?, birth_date = ?, phone_number = ?, '
+                               'postal_code = ?, locality = ?, address = ?, email = ? '
+                               'WHERE user_id = ?',
+                               (city, full_name, sex, birth_date, phone_number, postal_code, locality, address,
+                                email, user_id))
+            self.__base.commit()
+            return True
+        except Exception as ex:
+            logger.warning(f'An error occurred when adding data from the form to the users model\n'
+                           f'{ex}')
+            return False
 
     def __del__(self):
         self.__cur.close()
