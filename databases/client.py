@@ -75,6 +75,16 @@ class SentencesDB:
                            f'{ex}')
             return False
 
+    def get_sentence(self, type_sentence: str, language: bool):
+        self.__cur.execute('SELECT sentence '
+                           'FROM sentences '
+                           'WHERE type_sentence = ? and language = ?',
+                           (type_sentence, language))
+        sentences = self.__cur.fetchmany(1)
+        if sentences:
+            return sentences[0][0]
+        return 0
+
     def __del__(self):
         self.__cur.close()
         self.__base.close()
@@ -159,6 +169,13 @@ class UsersDB:
             logger.warning(f'An error occurred when adding data from the form to the users model\n'
                            f'{ex}')
             return False
+
+    def get_user(self, user_id: int) -> list:
+        self.__cur.execute('SELECT * '
+                           'FROM users '
+                           'WHERE user_id = ?',
+                           (user_id, ))
+        return self.__cur.fetchall()
 
     def __del__(self):
         self.__cur.close()
