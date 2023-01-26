@@ -20,4 +20,8 @@ async def create_start_menu(language: bool, sentences_db: SentencesDB) -> ReplyK
     button_about_product = KeyboardButton(text=text_about_product)
     start_menu.insert(button_about_product)
 
+    text_form = sentences_db.get_sentence(type_sentence='form_button', language=language)
+    button_form = KeyboardButton(text=text_form)
+    start_menu.insert(button_form)
+
     return start_menu
