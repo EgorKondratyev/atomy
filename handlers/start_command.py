@@ -1,10 +1,8 @@
-import traceback
-
 from aiogram.types import Message, CallbackQuery
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters import Text
 
-from create_bot.bot import dp, bot
+from create_bot.bot import dp
 from databases.client import SentencesDB, UsersDB
 from buttons.inline.start_buttons import language_menu
 from buttons.reply.start_buttons_reply import create_start_menu
@@ -49,4 +47,5 @@ async def set_language(callback: CallbackQuery, state: FSMContext):
 
 def register_start_command_handlers():
     dp.register_message_handler(start_command, commands='start')
+    dp.register_message_handler(start_command, Text(equals=['Back', 'back', 'Назад', 'назад', 'Go Back']))
     dp.register_callback_query_handler(set_language, Text(startswith='language_'), state=ChoiceLanguageFSM.choice)
