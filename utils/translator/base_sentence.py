@@ -1082,12 +1082,124 @@ sentences = [
                     'Catalog: https://www.atomy.ru/ru/Home/Product/ProductList?LClass=04&MClass=04',
         'language': False
     },
-    #####################################Уход за кожей############################################################
-    # {
-    #     'type_sentence': '',
-    #     'sentence': '',
-    #     'language': True
-    # },
+    #####################################О продукции компании#######################################################
+    ################################################################################################################
+    ########################################Форма###################################################################
+    {
+        'type_sentence': 'form_button',
+        'sentence': '✅ Хочу зарегистрироваться партнёром и зарабатывать, или быть покупателем',
+        'language': True
+    },
+    {
+        'type_sentence': 'form_button',
+        'sentence': '✅ I want to register as a partner and earn money, or be a buyer',
+        'language': False
+    },
+    {
+        'type_sentence': 'form_first',
+        'sentence': 'Замечательно! Вы зашли в форму регистрации\n\n'
+                    'Первый вопрос: страна в которой Вы проживаете?',
+        'language': True
+    },
+    {
+        'type_sentence': 'form_first',
+        'sentence': 'Wonderful! You have entered the registration form\n\n'
+                    'First question: the country in which you live?',
+        'language': False
+    },
+
+    {
+        'type_sentence': 'form_second',
+        'sentence': 'Отлично!🍵\n\n'
+                    'Введите ваши инициалы (ФИО): ',
+        'language': True
+    },
+    {
+        'type_sentence': 'form_second',
+        'sentence': 'Excellent🍵\n\n'
+                    'Enter your initials (full name): ',
+        'language': False
+    },
+
+    {
+        'type_sentence': 'form_third',
+        'sentence': 'Назовите Вашу сексуальную ориентацию (пол): ',
+        'language': True
+    },
+    {
+        'type_sentence': 'form_third',
+        'sentence': 'Name your sexual orientation (gender): ',
+        'language': False
+    },
+    {
+        'type_sentence': 'form_fourth',
+        'sentence': 'Идеально!\n\n'
+                    '<b>Введите Вашу дату рождения:</b> \n\n'
+                    'Синтаксис: день.месяц.год | Пример: 30.01.2001',
+        'language': True
+    },
+    {
+        'type_sentence': 'form_fourth',
+        'sentence': 'Perfect!\n\n'
+                    '<b>Enter your date of birth:</b> \n\n'
+                    'Syntax: day.month.year | Example: 30.01.2001',
+        'language': False
+    },
+    {
+        'type_sentence': 'form_fifth',
+        'sentence': 'Введите Ваш номер мобильного телефона: ',
+        'language': True
+    },
+    {
+        'type_sentence': 'form_fifth',
+        'sentence': 'Enter your mobile phone number: ',
+        'language': False
+    },
+    {
+        'type_sentence': 'form_sixth',
+        'sentence': 'Осталось ещё совсем немного! \n\n'
+                    'Введите свой почтовый индекс: ',
+        'language': True
+    },
+    {
+        'type_sentence': 'form_sixth',
+        'sentence': "There's not much left! \n\n"
+                    'Enter your zip code: ',
+        'language': False
+    },
+
+    {
+        'type_sentence': 'form_seventh',
+        'sentence': 'Введите свой адрес: ',
+        'language': True
+    },
+    {
+        'type_sentence': 'form_seventh',
+        'sentence': 'Enter your address: ',
+        'language': False
+    },
+    {
+        'type_sentence': 'form_eighth',
+        'sentence': 'Введите свою электронную почту: ',
+        'language': True
+    },
+    {
+        'type_sentence': 'form_eighth',
+        'sentence': 'Enter your email: ',
+        'language': False
+    },
+    {
+        'type_sentence': 'form_ninth',
+        'sentence': 'Отлично.\n\n'
+                    'Последний вопрос: какова Ваша цель регистрации? ',
+        'language': True
+    },
+    {
+        'type_sentence': 'form_ninth',
+        'sentence': 'Fine.\n\n'
+                    'Last question: what is your purpose of registration? ',
+        'language': False
+    },
     # {
     #     'type_sentence': '',
     #     'sentence': '',

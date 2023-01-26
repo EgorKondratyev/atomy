@@ -99,14 +99,14 @@ class UsersDB:
     # 2. language - языке, который использует пользователь. Так как в текущем приложении языка будет два и
     # расширение не планируется, то True - это RUS, а False - это EN
     # 3. city - страна пользователя.
-    # 4. full_name - ФИО пользователя.
+    # 4. full_name - ФИО пользователя. Особенности: Кириллица
     # 5. sex - пол пользователя.
-    # 6. birth_date - дата рождения.
+    # 6. birth_date - дата рождения. Особенности: от 18 лет
     # 7. phone_number - номер телефона.
     # 8. postal_code - почтовый индекс.
-    # 9. locality - населенный пункт пользователя.
-    # 10. address - адрес пользователя.
-    # 11. email - электронная почта пользователя
+    # 9. address - адрес пользователя. Особенности: Кириллица
+    # 10. email - электронная почта пользователя.
+    # 11. purpose_registration - цель регистрации.
     def __init__(self):
         try:
             self.__base = sqlite3.connect(path)
@@ -120,9 +120,9 @@ class UsersDB:
                 birth_date VARCHAR(255),
                 phone_number VARCHAR(255),
                 postal_code VARCHAR(255),
-                locality VARCHAR(255),
                 address VARCHAR(255),
-                email VARCHAR(255)
+                email VARCHAR(255),
+                purpose_registration TEXT
             )''')
             self.__base.commit()
         except Exception as ex:
@@ -152,17 +152,17 @@ class UsersDB:
             return False
 
     def add_form_data(self, user_id: int, city: str, full_name: str, sex: str, birth_date: str, phone_number: str,
-                      postal_code: str, locality: str, address: str, email: str) -> bool:
+                      postal_code: str, address: str, email: str, purpose_registration: str) -> bool:
         """
         Добавление данных о пользователе, после заполнения формы.
         """
         try:
             self.__cur.execute('UPDATE users '
                                'SET city = ?, full_name = ?, sex = ?, birth_date = ?, phone_number = ?, '
-                               'postal_code = ?, locality = ?, address = ?, email = ? '
+                               'postal_code = ?, address = ?, email = ?, purpose_registration = ? '
                                'WHERE user_id = ?',
-                               (city, full_name, sex, birth_date, phone_number, postal_code, locality, address,
-                                email, user_id))
+                               (city, full_name, sex, birth_date, phone_number, postal_code, address,
+                                email, purpose_registration, user_id))
             self.__base.commit()
             return True
         except Exception as ex:
