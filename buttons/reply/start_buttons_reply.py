@@ -11,8 +11,13 @@ async def create_start_menu(language: bool, sentences_db: SentencesDB) -> ReplyK
     button_slogan = KeyboardButton(text=text_button_slogan)
     start_menu.insert(button_slogan)
 
+    # Кнопка за что платят?
     text_button_what_pay = sentences_db.get_sentence(type_sentence='what_pay_button', language=language)
     button_what_pay = KeyboardButton(text=text_button_what_pay)
     start_menu.insert(button_what_pay)
+
+    text_about_product = sentences_db.get_sentence(type_sentence='about_company_products_button', language=language)
+    button_about_product = KeyboardButton(text=text_about_product)
+    start_menu.insert(button_about_product)
 
     return start_menu

@@ -867,15 +867,231 @@ sentences = [
         'language': False
     },
     #####################################План компании 5 (вложенность в "Бонусы и поощрения")#######################
+    ################################################################################################################
+    #####################################О продукции компании#######################################################
     {
-        'type_sentence': '',
-        'sentence': '',
+        'type_sentence': 'about_company_products_button',
+        'sentence': '✅ О продукции компании',
         'language': True
     },
     {
-        'type_sentence': '',
-        'sentence': '',
+        'type_sentence': 'about_company_products_button',
+        'sentence': "✅ About the company's products",
+        'language': False
+    },
+    {
+        'type_sentence': 'about_company_products',
+        'sentence': 'Я с радостью расскажу о нашей продукции! 😉\n\n'
+                    '💡Продукция компании Аtomy сертифицирована по международным стандартам GMP и HACCP, что '
+                    'обеспечивает использование лучшего сырья с соблюдением высоких требований технологического '
+                    'процесса и контроль на всех этапах производства.\n\n'
+                    'Выберите ниже, что вам интересно и я расскажу! ⬇️',
         'language': True
     },
+    {
+        'type_sentence': 'about_company_products',
+        'sentence': 'I will be happy to tell you about our products! 😉\n\n'
+                    '💡Atomys products are certified according to international GMP and HACCP standards, which '
+                    'ensures the use of the best raw materials in compliance with high technological requirements '
+                    'process control and control at all stages of production.\n\n'
+                    'Choose below what you are interested in and I will tell you! ⬇️',
+        'language': False
+    },
+    #####################################О продукции компании 2 (вложенность)######################################
+    #####################################Здоровье##################################################################
+    {
+        'type_sentence': 'about_company_product_health_button',
+        'sentence': '👉 Здоровье',
+        'language': True
+    },
+    {
+        'type_sentence': 'about_company_product_health_button',
+        'sentence': '👉 Health',
+        'language': False
+    },
+    {
+        'type_sentence': 'about_company_product_health',
+        'sentence': '✅ Здоровье с Atomy\n\n'
+                    'Товары для здоровья южнокорейской Компании Atomy для всех категорий населения и всех возрастных '
+                    'групп. Здоровый образ жизни возведён жителями Южной Кореи в культ. Неудивительно что товары '
+                    'имеющие к нему непосредственное отношение, произведены по высочайшим стандартам качества. '
+                    'Натуральные средства от компании Atomy для здоровья и красоты.\n\n'
+                    '✅ Атоми красный женьшень\n'
+                    '✅ Аляска Е-Омега 3\n'
+                    '✅ Атоми Омега 3 для детей\n'
+                    '✅ Чай для похудения, Атоми Puer Tea\n'
+                    '✅ Атоми Color Food Мульти витамины\n'
+                    '✅ Атоми Софора квин\n'
+                    '✅ Спирулина Атоми\n\n'
+                    '😇Я хотел сделать короткое описание продукции, но её ассортимент поистине огромен!\n\n'
+                    'Каталог: https://www.atomy.ru/ru/Home/Product/ProductList?LClass=02',
+        'language': True
+    },
+    {
+        'type_sentence': 'about_company_product_health',
+        'sentence': '✅ Health with Atomy\n\n'
+                    'Health products of the South Korean company Atomy for all categories of the population and '
+                    'all ages groups. A healthy lifestyle is elevated by the inhabitants of South Korea into a cult. '
+                    'No wonder the goods related to it are produced to the highest quality standards. '
+                    'Atomys natural health and beauty products.\n\n'
+                    '✅ Atomy red ginseng\n'
+                    '✅ Alaska E-Omega 3\n'
+                    '✅ Atomy Omega 3 for kids\n'
+                    '✅ Tea for weight loss, Atomi Puer Tea\n'
+                    '✅ Atomy Color Food Multi Vitamins\n'
+                    '✅ Atomy Sophora Queen\n'
+                    '✅ Spirulina Atomy\n\n'
+                    '😇I wanted to make a short description of the products, but their range is really huge!\n\n'
+                    'Catalog: https://www.atomy.ru/ru/Home/Product/ProductList?LClass=02',
+        'language': False
+    },
+    #####################################Уход за волосами###########################################################
+    {
+        'type_sentence': 'about_company_product_hair_button',
+        'sentence': '👉 Уход за волосами',
+        'language': True
+    },
+    {
+        'type_sentence': 'about_company_product_hair_button',
+        'sentence': '👉 Hair care',
+        'language': False
+    },
+    {
+        'type_sentence': 'about_company_product_hair',
+        'sentence': '✅ Уход за волосами с Atomy \n\n'
+                    'Atomy — это средства для принятия ванны и душа, а также средства по уходу за волосами, '
+                    'лицом и телом, разработанные специально для всех типов кожи. Натуральные активные компоненты, '
+                    'входящие в средства по уходу за волосами, активно воздействуют на кожу головы и волос, '
+                    'обеспечивая необходимую микроциркуляцию для питания волос изнутри.\n\n'
+                    'Для того чтобы хорошо выглядеть, необходима специальная качественная косметика для комплексного '
+                    'ухода за кожей лица, волосами и телом. Комплексные средства по уходу за волосами позволяют '
+                    'предупредить преждевременное старение волос, их выпадение.\n\n'
+                    'Оригинальные органические компоненты, гипоаллергенные свойства, инновационные технологии, '
+                    'разработанные в Южной Корее - это основные качественные преимущества продуктов компании Atomy, '
+                    'позволяющей ей завоёвывать всё новые и новые страны.\n\n'
+                    'Каталог: https://www.atomy.ru/ru/Home/Product/ProductList?LClass=04&MClass=02',
+        'language': True
+    },
+    {
+        'type_sentence': 'about_company_product_hair',
+        'sentence': '✅ Hair care with Atomy \n\n'
+                    'Atomy is a bath, shower and hair care product,'
+                    'face and body, designed specifically for all skin types. Natural active ingredients, '
+                    'included in hair care products, actively affect the scalp and hair,'
+                    'providing the necessary microcirculation to nourish the hair from within.\n\n'
+                    'In order to look good, you need special high-quality cosmetics for a comprehensive '
+                    'facial, hair and body care. Comprehensive hair care products allow '
+                    'prevent premature aging of hair, hair loss.\n\n'
+                    'Original organic ingredients, hypoallergenic properties, innovative technologies,'
+                    'designed in South Korea are the main quality advantages of Atomys products,'
+                    'allowing her to conquer more and more countries.\n\n'
+                    'Catalog: https://www.atomy.ru/ru/Home/Product/ProductList?LClass=04&MClass=02',
+        'language': False
+    },
+    #####################################Уход за кожей############################################################
+    {
+        'type_sentence': 'about_company_product_skin_button',
+        'sentence': '👉 Уход за кожей',
+        'language': True
+    },
+    {
+        'type_sentence': 'about_company_product_skin_button',
+        'sentence': '👉 Skin care',
+        'language': False
+    },
+    {
+        'type_sentence': 'about_company_product_skin',
+        'sentence': '✅ Уход за кожей с Atomy\n\n'
+                    '✅Корейская органическая косметика Atomy разработана только из натуральных компонентов. '
+                    'Гипоаллергенная косметика подходит практически всем. Косметические средства компании Atomy '
+                    'зарекомендовали себя наилучшим образом.\n\n'
+                    'Кожа вокруг глаз особенно чувствительна, поэтому подобрать гипоаллергенный, '
+                    'но при этом эффективный крем — задача не из простых.\n\n'
+                    'Эффективность косметических средств Atomy доказана в ходе клинических исследований под тщательным '
+                    'контролем дерматологов, поэтому вы можете быть уверены, что даже сверхчувствительная кожа '
+                    'отреагирует на нанесение средства благоприятно.\n\n'
+                    '✅ Absolute CellActive Skincare - система антивозрастного ухода за кожей\n\n'
+                    '✅ Atomy SkinCare 6 system - система ухода за кожей из натуральных компонентов\n\n'
+                    '✅ Набор для глубокого увлажнения кожи Atomy Aqua \n\n'
+                    '✅ Профессиональный вечерний уход за кожей в домашних условиях Atomy Evening Care 4 Set \n\n'
+                    'Каталог: https://www.atomy.ru/ru/Home/Product/ProductList?LClass=03&MClass=01',
+        'language': True
+    },
+    {
+        'type_sentence': 'about_company_product_skin',
+        'sentence': '✅ Skin care with Atomy\n\n'
+                    '✅Korean Atomy organic cosmetics are made from natural ingredients only. '
+                    'Hypoallergenic cosmetics are suitable for almost everyone. Atomys cosmetics'
+                    'proven to be the best.\n\n'
+                    'The skin around the eyes is especially sensitive, so choose a hypoallergenic one,'
+                    'however, an effective cream is not an easy task.\n\n'
+                    'The efficacy of Atomy cosmetics has been proven in clinical trials under rigorous '
+                    'controlled by dermatologists, so you can be sure that even ultra-sensitive skin '
+                    'will react favorably to being applied.\n\n'
+                    '✅ Absolute CellActive Skincare - anti-aging skin care system\n\n'
+                    '✅ Atomy SkinCare 6 system - natural skin care system\n\n'
+                    '✅ Atomy Aqua Deep Hydration Kit \n\n'
+                    '✅ Atomy Evening Care 4 Set \n\n'
+                    'Catalog: https://www.atomy.ru/ru/Home/Product/ProductList?LClass=03&MClass=01',
+        'language': False
+    },
+    #################################Уход за полостью рта############################################################
+    {
+        'type_sentence': 'about_company_product_oral_button',
+        'sentence': '👉 Уход за полостью рта',
+        'language': True
+    },
+    {
+        'type_sentence': 'about_company_product_oral_button',
+        'sentence': '👉 Oral Care',
+        'language': False
+    },
+    {
+        'type_sentence': 'about_company_product_oral',
+        'sentence': '✅ Зубная паста Атоми с прополисом \n\n'
+                    '👉Зубная паста с прополисом является одним из самых продаваемых товаров компании Atomy. \n\n'
+                    'Большинство попробовав её один раз, возвращаются за ней, и другой продукцией от южно-корейской '
+                    'компании снова и снова.\n\n'
+                    '🔸Основными действующими компонентами являются экстракты зелёного чая и прополиса. Обладают '
+                    'антибактериальными и противовоспалительными свойствами, препятствуют размножению бактерий, '
+                    'предотвращают неприятный запах.\n\n'
+                    '🔸Так же в состав пасты входит такое вещество как ксилит, он предотвращает метаболический процесс '
+                    'бактерий, которые являются причиной появления зубного налёта, уменьшает бактериальный слой на '
+                    'поверхности зубов.\n\n'
+                    '💡Обязательный элементом является фтор, который проникает в кристаллическую решётку эмали зуба и '
+                    'укрепляет её, повышая сопротивляемость к воздействию патогенных микроорганизмов и защищая от '
+                    'образования кариеса, и потери кальция.\n\n'
+                    'Каталог: https://www.atomy.ru/ru/Home/Product/ProductList?LClass=04&MClass=04',
+        'language': True
+    },
+    {
+        'type_sentence': 'about_company_product_oral',
+        'sentence': '✅ Atomy Propolis Toothpaste \n\n'
+                    '👉 Propolis toothpaste is one of Atomys best selling products. \n\n'
+                    'Most people who try it once come back for it and other South Korean products'
+                    'companies again and again.\n\n'
+                    '🔸 The main active ingredients are extracts of green tea and propolis. Possess'
+                    'antibacterial and anti-inflammatory properties, inhibit the growth of bacteria,'
+                    'prevent bad smell.\n\n'
+                    '🔸The paste also contains a substance such as xylitol, it prevents the metabolic process'
+                    'bacteria that cause plaque, reduces the bacterial layer by '
+                    'tooth surfaces.\n\n'
+                    '💡An essential element is fluorine, which penetrates the crystal lattice of tooth enamel and '
+                    'strengthens it, increasing resistance to pathogens and protecting against '
+                    'Caries formation, and calcium loss.\n\n'
+                    'Catalog: https://www.atomy.ru/ru/Home/Product/ProductList?LClass=04&MClass=04',
+        'language': False
+    },
+    #####################################Уход за кожей############################################################
+    # {
+    #     'type_sentence': '',
+    #     'sentence': '',
+    #     'language': True
+    # },
+    # {
+    #     'type_sentence': '',
+    #     'sentence': '',
+    #     'language': True
+    # },
 
 ]
