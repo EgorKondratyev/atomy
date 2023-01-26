@@ -3,6 +3,7 @@ from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters import Text
 
 from create_bot.bot import dp
+from databases.client import UsersDB
 
 
 def create_keyboard_stop_fsm() -> InlineKeyboardMarkup:
@@ -16,21 +17,23 @@ def create_keyboard_stop_fsm() -> InlineKeyboardMarkup:
 # @dp.message_handler(commands='stop', state='*')
 # @dp.message_handler(Text(equals=['stop'], ignore_case=True), state='*')
 async def stop_fsm(message: [Message, CallbackQuery], state: FSMContext):
-    current_state = await state.get_state()
-    if current_state is None:
+    user_db = UsersDB()
+    if user_db.exists_user(user_id=message.from_user.id):
+        current_state = await state.get_state()
+        if current_state is None:
+            try:  # callback
+                await message.answer()
+                await message.message.answer("Process not found!")
+            except Exception:  # message
+                await message.answer("We haven't found what it would take to stop")
+            return
+
+        await state.finish()
         try:  # callback
             await message.answer()
-            await message.message.answer("Process not found!")
+            await message.message.answer('Operation successfully stopped')
         except Exception:  # message
-            await message.answer("We haven't found what it would take to stop")
-        return
-
-    await state.finish()
-    try:  # callback
-        await message.answer()
-        await message.message.answer('Operation successfully stopped')
-    except Exception:  # message
-        await message.answer('Operation successfully stopped')
+            await message.answer('Operation successfully stopped')
 
 
 def register_stop_fsm_handler():
