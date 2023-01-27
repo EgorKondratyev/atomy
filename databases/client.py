@@ -15,6 +15,7 @@ class SentencesDB:
     # 2. sentence - Сам текст, который будет содержаться в том или ином предложении/команде/кнопки.
     # 3. language - Язык текущего предложения. Так как в текущем приложении языка будет два и расширение не планируется,
     # то True - это RUS, а False - это EN
+    # 4. photo_id - ID (телеграм) фото, которое устанавливает админ.
     # В текущей сущности атрибуты type_sentence and language будут выступать как составной ключ при помощи,
     # которого можно вытянуть любое sentence, но они будут повторяться, поэтому чтобы дотянуть их до NF2 был создан
     # обычный pk ;)
@@ -26,7 +27,8 @@ class SentencesDB:
                 pk INTEGER PRIMARY KEY AUTOINCREMENT,
                 type_sentence VARCHAR(255),
                 sentence TEXT,
-                language BOOLEAN 
+                language BOOLEAN,
+                photo_id TEXT 
             )''')
             self.__base.commit()
         except Exception as ex:
@@ -75,6 +77,19 @@ class SentencesDB:
                            f'{ex}')
             return False
 
+    def set_photo_in_sentence(self, type_sentence: str, language: bool, photo_id: str) -> bool:
+        try:
+            self.__cur.execute('UPDATE sentences '
+                               'SET photo_id = ? '
+                               'WHERE type_sentence = ? and language = ?',
+                               (photo_id, type_sentence, language))
+            self.__base.commit()
+            return True
+        except Exception as ex:
+            logger.warning(f'An error occurred while adding photo_id to the sentences entity\n'
+                           f'{ex}')
+            return False
+
     def get_sentence(self, type_sentence: str, language: bool):
         self.__cur.execute('SELECT sentence '
                            'FROM sentences '
@@ -83,6 +98,16 @@ class SentencesDB:
         sentences = self.__cur.fetchmany(1)
         if sentences:
             return sentences[0][0]
+        return 0
+
+    def get_photo_id(self, type_sentence: str, language: bool):
+        self.__cur.execute('SELECT photo_id '
+                           'FROM sentences '
+                           'WHERE type_sentence = ? and language = ?',
+                           (type_sentence, language))
+        photo_id = self.__cur.fetchone()
+        if photo_id:
+            return photo_id[0]
         return 0
 
     def __del__(self):
