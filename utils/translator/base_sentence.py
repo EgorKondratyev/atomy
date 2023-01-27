@@ -1200,6 +1200,29 @@ sentences = [
                     'Last question: what is your purpose of registration? ',
         'language': False
     },
+
+    {
+        'type_sentence': 'form_set',
+        'sentence': 'Вы отлично справились с прохождением формы!\n\n'
+                    'Ожидайте, в течение 24 часов с Вами свяжутся!',
+        'language': True
+    },
+    {
+        'type_sentence': 'form_set',
+        'sentence': 'You did a great job passing the form!\n\n'
+                    'Expect to be contacted within 24 hours!',
+        'language': False
+    },
+    {
+        'type_sentence': 'form_passed',
+        'sentence': 'Вы уже прошли форму!',
+        'language': True
+    },
+    {
+        'type_sentence': 'form_passed',
+        'sentence': 'You have already passed the form!',
+        'language': False
+    },
     # {
     #     'type_sentence': '',
     #     'sentence': '',

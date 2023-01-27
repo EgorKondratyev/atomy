@@ -122,7 +122,8 @@ class UsersDB:
                 postal_code VARCHAR(255),
                 address VARCHAR(255),
                 email VARCHAR(255),
-                purpose_registration TEXT
+                purpose_registration TEXT,
+                register_status BOOLEAN DEFAULT FALSE
             )''')
             self.__base.commit()
         except Exception as ex:
@@ -135,6 +136,16 @@ class UsersDB:
                            'WHERE user_id = ?',
                            (user_id, ))
         return len(self.__cur.fetchmany(1)).__bool__()
+
+    def get_register_status(self, user_id: int) -> bool:
+        self.__cur.execute('SELECT register_status '
+                           'FROM users '
+                           'WHERE user_id = ?',
+                           (user_id, ))
+        register_status = self.__cur.fetchone()
+        if register_status:
+            return register_status[0]
+        return False
 
     def add_user(self, user_id: int, language: bool) -> bool:
         """
@@ -159,10 +170,10 @@ class UsersDB:
         try:
             self.__cur.execute('UPDATE users '
                                'SET city = ?, full_name = ?, sex = ?, birth_date = ?, phone_number = ?, '
-                               'postal_code = ?, address = ?, email = ?, purpose_registration = ? '
+                               'postal_code = ?, address = ?, email = ?, purpose_registration = ?, register_status = ?'
                                'WHERE user_id = ?',
                                (city, full_name, sex, birth_date, phone_number, postal_code, address,
-                                email, purpose_registration, user_id))
+                                email, purpose_registration, True, user_id))
             self.__base.commit()
             return True
         except Exception as ex:
