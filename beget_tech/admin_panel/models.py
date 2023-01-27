@@ -16,10 +16,12 @@ class Users(models.Model):
     register_status = models.BooleanField(default=False, null=True,  verbose_name='Статус регистрации')
 
     def __str__(self):
-        return self.user_id
+        return self.full_name
 
     class Meta:
         db_table = 'users'
+        verbose_name = 'зарегистрированного пользователя'
+        verbose_name_plural = 'Зарегистрированные пользователи'
 
 
 class Sentences(models.Model):
@@ -33,3 +35,5 @@ class Sentences(models.Model):
 
     class Meta:
         db_table = 'sentences'
+        verbose_name = 'Предложения и кнопки'
+        verbose_name_plural = 'Предложения и кнопки'

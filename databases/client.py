@@ -23,14 +23,14 @@ class SentencesDB:
         try:
             self.__base = sqlite3.connect(path)
             self.__cur = self.__base.cursor()
-            self.__cur.execute('''CREATE TABLE IF NOT EXISTS sentences(
-                pk INTEGER PRIMARY KEY AUTOINCREMENT,
-                type_sentence VARCHAR(255),
-                sentence TEXT,
-                language BOOLEAN,
-                photo_id TEXT 
-            )''')
-            self.__base.commit()
+            # self.__cur.execute('''CREATE TABLE IF NOT EXISTS sentences(
+            #     pk INTEGER PRIMARY KEY AUTOINCREMENT,
+            #     type_sentence VARCHAR(255),
+            #     sentence TEXT,
+            #     language BOOLEAN,
+            #     # photo_id TEXT
+            # )''')
+            # self.__base.commit()
         except Exception as ex:
             logger.warning(f'Errors occurred while connecting to the sentences entity\n'
                            f'{ex}')
@@ -101,7 +101,7 @@ class SentencesDB:
         return 0
 
     def get_photo_id(self, type_sentence: str, language: bool):
-        self.__cur.execute('SELECT photo_id '
+        self.__cur.execute('SELECT photo '
                            'FROM sentences '
                            'WHERE type_sentence = ? and language = ?',
                            (type_sentence, language))
@@ -136,21 +136,21 @@ class UsersDB:
         try:
             self.__base = sqlite3.connect(path)
             self.__cur = self.__base.cursor()
-            self.__cur.execute('''CREATE TABLE IF NOT EXISTS users(
-                user_id BIGINT PRIMARY KEY,
-                language BOOLEAN,
-                city VARCHAR(255),
-                full_name VARCHAR(255),
-                sex VARCHAR(255),
-                birth_date VARCHAR(255),
-                phone_number VARCHAR(255),
-                postal_code VARCHAR(255),
-                address VARCHAR(255),
-                email VARCHAR(255),
-                purpose_registration TEXT,
-                register_status BOOLEAN DEFAULT FALSE
-            )''')
-            self.__base.commit()
+            # self.__cur.execute('''CREATE TABLE IF NOT EXISTS users(
+            #     user_id BIGINT PRIMARY KEY,
+            #     language BOOLEAN,
+            #     city VARCHAR(255),
+            #     full_name VARCHAR(255),
+            #     sex VARCHAR(255),
+            #     birth_date VARCHAR(255),
+            #     phone_number VARCHAR(255),
+            #     postal_code VARCHAR(255),
+            #     address VARCHAR(255),
+            #     email VARCHAR(255),
+            #     purpose_registration TEXT,
+            #     register_status BOOLEAN DEFAULT FALSE
+            # )''')
+            # self.__base.commit()
         except Exception as ex:
             logger.warning(f'Errors occurred while connecting to the users entity\n'
                            f'{ex}')

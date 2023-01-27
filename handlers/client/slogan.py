@@ -15,11 +15,8 @@ async def slogan(message: Message):
     sentences_db = SentencesDB()
     language = user_db.get_language_user(message.from_user.id)
     sentence = sentences_db.get_sentence(type_sentence='slogan', language=language)
-    photo_id = sentences_db.get_photo_id(type_sentence='slogan', language=language)
-    if not photo_id:
-        await message.answer(sentence, parse_mode='html')
-    else:
-        await message.answer_photo(photo=photo_id, caption=sentence)
+    await message.answer(sentence, parse_mode='html')
+
 
 
 def register_slogan_handlers():
