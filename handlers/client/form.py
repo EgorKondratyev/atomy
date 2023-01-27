@@ -12,13 +12,21 @@ from states.form_states import FormFSM
 
 async def form_first(message: Message):
     user_db = UsersDB()
+    sentences_db = SentencesDB()
     language = user_db.get_language_user(message.from_user.id)
     if not user_db.get_register_status(user_id=message.from_user.id):
-        sentence = SentencesDB().get_sentence(type_sentence='form_first', language=language)
+        sentence = sentences_db.get_sentence(type_sentence='form_first', language=language)
+        photo = sentences_db.get_photo_id(type_sentence='form_first', language=language)
         await FormFSM.get_city.set()
     else:
-        sentence = SentencesDB().get_sentence(type_sentence='form_passed', language=language)
-    await message.answer(sentence, parse_mode='html')
+        sentence = sentences_db.get_sentence(type_sentence='form_passed', language=language)
+        photo = sentences_db.get_photo_id(type_sentence='form_passed', language=language)
+    if not photo:
+        await message.answer(sentence, parse_mode='html')
+    else:
+        path = 'beget_tech/media/' + photo
+        with open(path, 'rb') as object_photo:
+            await message.answer_photo(photo=object_photo, caption=sentence, parse_mode='html')
 
 
 async def form_second(message: Message, state: FSMContext):
@@ -26,9 +34,17 @@ async def form_second(message: Message, state: FSMContext):
         async with state.proxy() as data:
             data['city'] = message.text
         user_db = UsersDB()
+        sentences_db = SentencesDB()
         language = user_db.get_language_user(message.from_user.id)
-        sentence = SentencesDB().get_sentence(type_sentence='form_second', language=language)
-        await message.answer(sentence, parse_mode='html', reply_markup=create_keyboard_stop_fsm())
+        sentence = sentences_db.get_sentence(type_sentence='form_second', language=language)
+        photo = sentences_db.get_photo_id(type_sentence='form_second', language=language)
+        if not photo:
+            await message.answer(sentence, parse_mode='html', reply_markup=create_keyboard_stop_fsm())
+        else:
+            path = 'beget_tech/media/' + photo
+            with open(path, 'rb') as object_photo:
+                await message.answer_photo(photo=object_photo, caption=sentence, parse_mode='html',
+                                           reply_markup=create_keyboard_stop_fsm())
         await FormFSM.get_full_name.set()
     else:
         await message.answer('Limit of 255 characters')
@@ -39,9 +55,17 @@ async def form_third(message: Message, state: FSMContext):
         async with state.proxy() as data:
             data['full_name'] = message.text.upper()
         user_db = UsersDB()
+        sentences_db = SentencesDB()
         language = user_db.get_language_user(message.from_user.id)
-        sentence = SentencesDB().get_sentence(type_sentence='form_third', language=language)
-        await message.answer(sentence, parse_mode='html', reply_markup=create_keyboard_stop_fsm())
+        sentence = sentences_db.get_sentence(type_sentence='form_third', language=language)
+        photo = sentences_db.get_photo_id(type_sentence='form_third', language=language)
+        if not photo:
+            await message.answer(sentence, parse_mode='html', reply_markup=create_keyboard_stop_fsm())
+        else:
+            path = 'beget_tech/media/' + photo
+            with open(path, 'rb') as object_photo:
+                await message.answer_photo(photo=object_photo, caption=sentence, parse_mode='html',
+                                           reply_markup=create_keyboard_stop_fsm())
         await FormFSM.get_sex.set()
     else:
         await message.answer('Limit of 255 characters')
@@ -52,9 +76,17 @@ async def form_fourth(message: Message, state: FSMContext):
         async with state.proxy() as data:
             data['sex'] = message.text
         user_db = UsersDB()
+        sentences_db = SentencesDB()
         language = user_db.get_language_user(message.from_user.id)
-        sentence = SentencesDB().get_sentence(type_sentence='form_fourth', language=language)
-        await message.answer(sentence, parse_mode='html', reply_markup=create_keyboard_stop_fsm())
+        sentence = sentences_db.get_sentence(type_sentence='form_fourth', language=language)
+        photo = sentences_db.get_photo_id(type_sentence='form_fourth', language=language)
+        if not photo:
+            await message.answer(sentence, parse_mode='html', reply_markup=create_keyboard_stop_fsm())
+        else:
+            path = 'beget_tech/media/' + photo
+            with open(path, 'rb') as object_photo:
+                await message.answer_photo(photo=object_photo, caption=sentence, parse_mode='html',
+                                           reply_markup=create_keyboard_stop_fsm())
         await FormFSM.get_birth_date.set()
     else:
         await message.answer('Limit of 255 characters')
@@ -69,9 +101,17 @@ async def form_fifth(message: Message, state: FSMContext):
                 async with state.proxy() as data:
                     data['birth_date'] = message.text
                 user_db = UsersDB()
+                sentences_db = SentencesDB()
                 language = user_db.get_language_user(message.from_user.id)
-                sentence = SentencesDB().get_sentence(type_sentence='form_fifth', language=language)
-                await message.answer(sentence, parse_mode='html', reply_markup=create_keyboard_stop_fsm())
+                sentence = sentences_db.get_sentence(type_sentence='form_fifth', language=language)
+                photo = sentences_db.get_photo_id(type_sentence='form_fifth', language=language)
+                if not photo:
+                    await message.answer(sentence, parse_mode='html', reply_markup=create_keyboard_stop_fsm())
+                else:
+                    path = 'beget_tech/media/' + photo
+                    with open(path, 'rb') as object_photo:
+                        await message.answer_photo(photo=object_photo, caption=sentence, parse_mode='html',
+                                                   reply_markup=create_keyboard_stop_fsm())
                 await FormFSM.get_phone_number.set()
             else:
                 await message.answer('The date should consist only of numbers and dots!')
@@ -87,9 +127,17 @@ async def form_sixth(message: Message, state: FSMContext):
         async with state.proxy() as data:
             data['phone_number'] = message.text
         user_db = UsersDB()
+        sentences_db = SentencesDB()
         language = user_db.get_language_user(message.from_user.id)
-        sentence = SentencesDB().get_sentence(type_sentence='form_sixth', language=language)
-        await message.answer(sentence, parse_mode='html', reply_markup=create_keyboard_stop_fsm())
+        sentence = sentences_db.get_sentence(type_sentence='form_sixth', language=language)
+        photo = sentences_db.get_photo_id(type_sentence='form_sixth', language=language)
+        if not photo:
+            await message.answer(sentence, parse_mode='html', reply_markup=create_keyboard_stop_fsm())
+        else:
+            path = 'beget_tech/media/' + photo
+            with open(path, 'rb') as object_photo:
+                await message.answer_photo(photo=object_photo, caption=sentence, parse_mode='html',
+                                           reply_markup=create_keyboard_stop_fsm())
         await FormFSM.get_postal_code.set()
     else:
         await message.answer('Limit of 255 characters')
@@ -100,9 +148,17 @@ async def form_seventh(message: Message, state: FSMContext):
         async with state.proxy() as data:
             data['postal_code'] = message.text
         user_db = UsersDB()
+        sentences_db = SentencesDB()
         language = user_db.get_language_user(message.from_user.id)
-        sentence = SentencesDB().get_sentence(type_sentence='form_seventh', language=language)
-        await message.answer(sentence, parse_mode='html', reply_markup=create_keyboard_stop_fsm())
+        sentence = sentences_db.get_sentence(type_sentence='form_seventh', language=language)
+        photo = sentences_db.get_photo_id(type_sentence='form_seventh', language=language)
+        if not photo:
+            await message.answer(sentence, parse_mode='html', reply_markup=create_keyboard_stop_fsm())
+        else:
+            path = 'beget_tech/media/' + photo
+            with open(path, 'rb') as object_photo:
+                await message.answer_photo(photo=object_photo, caption=sentence, parse_mode='html',
+                                           reply_markup=create_keyboard_stop_fsm())
         await FormFSM.get_address.set()
     else:
         await message.answer('Limit of 255 characters')
@@ -113,25 +169,38 @@ async def form_eighth(message: Message, state: FSMContext):
         async with state.proxy() as data:
             data['address'] = message.text.upper()
         user_db = UsersDB()
+        sentences_db = SentencesDB()
         language = user_db.get_language_user(message.from_user.id)
-        sentence = SentencesDB().get_sentence(type_sentence='form_eighth', language=language)
-        await message.answer(sentence, parse_mode='html', reply_markup=create_keyboard_stop_fsm())
+        sentence = sentences_db.get_sentence(type_sentence='form_eighth', language=language)
+        photo = sentences_db.get_photo_id(type_sentence='form_eighth', language=language)
+        if not photo:
+            await message.answer(sentence, parse_mode='html', reply_markup=create_keyboard_stop_fsm())
+        else:
+            path = 'beget_tech/media/' + photo
+            with open(path, 'rb') as object_photo:
+                await message.answer_photo(photo=object_photo, caption=sentence, parse_mode='html',
+                                           reply_markup=create_keyboard_stop_fsm())
         await FormFSM.get_email.set()
     else:
         await message.answer('Limit of 255 characters')
 
 
 async def form_ninth(message: Message, state: FSMContext):
-    if len(message.text) < 255:
-        async with state.proxy() as data:
-            data['email'] = message.text
-        user_db = UsersDB()
-        language = user_db.get_language_user(message.from_user.id)
-        sentence = SentencesDB().get_sentence(type_sentence='form_ninth', language=language)
+    async with state.proxy() as data:
+        data['email'] = message.text
+    user_db = UsersDB()
+    sentences_db = SentencesDB()
+    language = user_db.get_language_user(message.from_user.id)
+    sentence = SentencesDB().get_sentence(type_sentence='form_ninth', language=language)
+    photo = sentences_db.get_photo_id(type_sentence='form_ninth', language=language)
+    if not photo:
         await message.answer(sentence, parse_mode='html', reply_markup=create_keyboard_stop_fsm())
-        await FormFSM.get_purpose_registration.set()
     else:
-        await message.answer('Limit of 255 characters')
+        path = 'beget_tech/media/' + photo
+        with open(path, 'rb') as object_photo:
+            await message.answer_photo(photo=object_photo, caption=sentence, parse_mode='html',
+                                       reply_markup=create_keyboard_stop_fsm())
+    await FormFSM.get_purpose_registration.set()
 
 
 async def form_set(message: Message, state: FSMContext):

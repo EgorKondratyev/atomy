@@ -12,9 +12,18 @@ async def about_company_products(message: Message):
     language = user_db.get_language_user(message.from_user.id)
     sentence_db = SentencesDB()
     sentence = sentence_db.get_sentence(type_sentence='about_company_products', language=language)
-    await message.answer(sentence, parse_mode='html',
-                         reply_markup=await create_about_company_product_menu(language=language,
-                                                                              sentences_db=sentence_db))
+    photo = sentence_db.get_photo_id(type_sentence='about_company_products', language=language)
+    if not photo:
+        await message.answer(sentence, parse_mode='html',
+                             reply_markup=await create_about_company_product_menu(language=language,
+                                                                                  sentences_db=sentence_db))
+    else:
+        path = 'beget_tech/media/' + photo
+        with open(path, 'rb') as object_photo:
+            await message.answer_photo(photo=object_photo, caption=sentence,
+                                       reply_markup=await create_about_company_product_menu(language=language,
+                                                                                            sentences_db=sentence_db),
+                                       parse_mode='html')
 
 
 async def about_company_product_health(message: Message):

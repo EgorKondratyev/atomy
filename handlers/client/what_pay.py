@@ -13,8 +13,16 @@ async def what_pay(message: Message):
     language = user_db.get_language_user(message.from_user.id)
     sentence_db = SentencesDB()
     sentence = sentence_db.get_sentence(type_sentence='what_pay', language=language)
-    await message.answer(sentence, parse_mode='html',
-                         reply_markup=await create_what_pay_menu(language=language, sentences_db=sentence_db))
+    photo = sentence_db.get_photo_id(type_sentence='what_pay', language=language)
+    if not photo:
+        await message.answer(sentence, parse_mode='html',
+                             reply_markup=await create_what_pay_menu(language=language, sentences_db=sentence_db))
+    else:
+        path = 'beget_tech/media/' + photo
+        with open(path, 'rb') as object_photo:
+            await message.answer_photo(photo=object_photo, caption=sentence,
+                                       reply_markup=await create_what_pay_menu(language=language,
+                                                                               sentences_db=sentence_db))
 
 
 async def video_presentation(message: Message):
@@ -22,8 +30,17 @@ async def video_presentation(message: Message):
     language = user_db.get_language_user(message.from_user.id)
     sentence_db = SentencesDB()
     sentence = sentence_db.get_sentence(type_sentence='video_presentation', language=language)
-    await message.answer(sentence, parse_mode='html',
-                         reply_markup=await create_video_presentation_menu(language=language, sentences_db=sentence_db))
+    photo = sentence_db.get_photo_id(type_sentence='video_presentation', language=language)
+    if not photo:
+        await message.answer(sentence, parse_mode='html',
+                             reply_markup=await create_video_presentation_menu(language=language,
+                                                                               sentences_db=sentence_db))
+    else:
+        path = 'beget_tech/media/' + photo
+        with open(path, 'rb') as object_photo:
+            await message.answer_photo(photo=object_photo, caption=sentence,
+                                       reply_markup=await create_video_presentation_menu(language=language,
+                                                                                         sentences_db=sentence_db))
 
 
 async def company_plan(message: Message):
@@ -31,8 +48,16 @@ async def company_plan(message: Message):
     language = user_db.get_language_user(message.from_user.id)
     sentence_db = SentencesDB()
     sentence = sentence_db.get_sentence(type_sentence='company_plan', language=language)
-    await message.answer(sentence, parse_mode='html',
-                         reply_markup=await create_company_plan_menu(language=language, sentences_db=sentence_db))
+    photo = sentence_db.get_photo_id(type_sentence='company_plan', language=language)
+    if not photo:
+        await message.answer(sentence, parse_mode='html',
+                             reply_markup=await create_company_plan_menu(language=language, sentences_db=sentence_db))
+    else:
+        path = 'beget_tech/media/' + photo
+        with open(path, 'rb') as object_photo:
+            await message.answer_photo(photo=object_photo, caption=sentence,
+                                       reply_markup=await create_company_plan_menu(language=language,
+                                                                                   sentences_db=sentence_db))
 
 
 async def distributorship(message: Message):
@@ -40,8 +65,17 @@ async def distributorship(message: Message):
     language = user_db.get_language_user(message.from_user.id)
     sentence_db = SentencesDB()
     sentence = sentence_db.get_sentence(type_sentence='distributorship', language=language)
-    await message.answer(sentence, parse_mode='html',
-                         reply_markup=await create_distributorship_menu(language=language, sentences_db=sentence_db))
+    photo = sentence_db.get_photo_id(type_sentence='distributorship', language=language)
+    if not photo:
+        await message.answer(sentence, parse_mode='html',
+                             reply_markup=await create_distributorship_menu(language=language,
+                                                                            sentences_db=sentence_db))
+    else:
+        path = 'beget_tech/media/' + photo
+        with open(path, 'rb') as object_photo:
+            await message.answer_photo(photo=object_photo, caption=sentence,
+                                       reply_markup=await create_distributorship_menu(language=language,
+                                                                                      sentences_db=sentence_db))
 
 
 async def distributorship_sales_representative(message: Message):
@@ -69,8 +103,16 @@ async def qualification_master(message: Message):
     language = user_db.get_language_user(message.from_user.id)
     sentence_db = SentencesDB()
     sentence = sentence_db.get_sentence(type_sentence='qualification_master', language=language)
-    await message.answer(sentence, parse_mode='html',
-                         reply_markup=await create_qualification_menu(language=language, sentences_db=sentence_db))
+    photo = sentence_db.get_photo_id(type_sentence='qualification_master', language=language)
+    if not photo:
+        await message.answer(sentence, parse_mode='html',
+                             reply_markup=await create_qualification_menu(language=language, sentences_db=sentence_db))
+    else:
+        path = 'beget_tech/media/' + photo
+        with open(path, 'rb') as object_photo:
+            await message.answer_photo(photo=object_photo, caption=sentence,
+                                       reply_markup=await create_qualification_menu(language=language,
+                                                                                    sentences_db=sentence_db))
 
 
 async def qualification_sales_master(message: Message):
@@ -110,8 +152,16 @@ async def bonus(message: Message):
     language = user_db.get_language_user(message.from_user.id)
     sentence_db = SentencesDB()
     sentence = sentence_db.get_sentence(type_sentence='bonus', language=language)
-    await message.answer(sentence, parse_mode='html',
-                         reply_markup=await create_bonus_menu(language=language, sentences_db=sentence_db))
+    photo = sentence_db.get_photo_id(type_sentence='bonus', language=language)
+    if not photo:
+        await message.answer(sentence, parse_mode='html',
+                             reply_markup=await create_bonus_menu(language=language, sentences_db=sentence_db))
+    else:
+        path = 'beget_tech/media/' + photo
+        with open(path, 'rb') as object_photo:
+            await message.answer_photo(photo=object_photo, caption=sentence,
+                                       reply_markup=await create_bonus_menu(language=language,
+                                                                            sentences_db=sentence_db))
 
 
 async def bonus_sales_master(message: Message):

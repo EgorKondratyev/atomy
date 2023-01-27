@@ -28,7 +28,7 @@ class Sentences(models.Model):
     type_sentence = models.CharField(max_length=255, verbose_name='Тип предложения')
     sentence = models.TextField(verbose_name='Предложение')
     language = models.BooleanField(verbose_name='Язык предложения')
-    photo = models.ImageField(upload_to='photos/%Y/%m/%d/', verbose_name='Фото предложения', null=True)
+    photo = models.ImageField(upload_to='photos/%Y/%m/%d/', verbose_name='Фото предложения', null=True, blank=True)
 
     def __str__(self):
         return self.type_sentence
