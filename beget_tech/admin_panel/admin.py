@@ -38,8 +38,17 @@ class SentencesAdmin(admin.ModelAdmin):
     list_display_links = ('pk', 'type_sentence')
     search_fields = ('type_sentence', 'sentence')
     ordering = ['pk']
-    fields = ('type_sentence', 'get_language_html', 'sentence', 'get_html_photo', 'photo')
+    fieldsets = (
+        (None, {
+            'fields': ('sentence', 'get_html_photo', 'photo')
+        }),
+        ('Дополнительная информация', {
+            'classes': ('collapse',),
+            'fields': ('type_sentence', 'get_language_html'),
+        }),
+    )
     readonly_fields = ('type_sentence', 'get_language_html', 'get_html_photo')
+    empty_value_display = 'Пусто'
 
     def get_language_html(self, object):
         if object.language:
@@ -53,6 +62,9 @@ class SentencesAdmin(admin.ModelAdmin):
             print(object.photo.url)
             return mark_safe(f'<img src="{object.photo.url}" width=50>')
     get_html_photo.short_description = 'Фото'
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 
 admin.site.register(Sentences, SentencesAdmin)
