@@ -31,16 +31,22 @@ async def video_presentation(message: Message):
     sentence_db = SentencesDB()
     sentence = sentence_db.get_sentence(type_sentence='video_presentation', language=language)
     photo = sentence_db.get_photo_id(type_sentence='video_presentation', language=language)
-    if not photo:
-        await message.answer(sentence, parse_mode='html',
-                             reply_markup=await create_video_presentation_menu(language=language,
-                                                                               sentences_db=sentence_db))
+    video = sentence_db.get_video_id(type_sentence='video_presentation', language=language)
+    if not video:
+        if not photo:
+            await message.answer(sentence, parse_mode='html',
+                                 reply_markup=await create_video_presentation_menu(language=language,
+                                                                                   sentences_db=sentence_db))
+        else:
+            path = 'beget_tech/media/' + photo
+            with open(path, 'rb') as object_photo:
+                await message.answer_photo(photo=object_photo, caption=sentence,
+                                           reply_markup=await create_video_presentation_menu(language=language,
+                                                                                             sentences_db=sentence_db))
     else:
-        path = 'beget_tech/media/' + photo
-        with open(path, 'rb') as object_photo:
-            await message.answer_photo(photo=object_photo, caption=sentence,
-                                       reply_markup=await create_video_presentation_menu(language=language,
-                                                                                         sentences_db=sentence_db))
+        await message.answer_video(video=video, caption=sentence,
+                                   reply_markup=await create_video_presentation_menu(language=language,
+                                                                                     sentences_db=sentence_db))
 
 
 async def company_plan(message: Message):

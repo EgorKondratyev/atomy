@@ -31,10 +31,10 @@ async def set_language(callback: CallbackQuery, state: FSMContext):
     user_db = UsersDB()
     if language == 'russian':
         await callback.answer('Успешно')
-        user_db.add_user(user_id=callback.from_user.id, language=True)
+        user_db.add_user(user_id=callback.from_user.id, language=True, username='@' + callback.from_user.username)
     else:
         await callback.answer('Success')
-        user_db.add_user(user_id=callback.from_user.id, language=False)
+        user_db.add_user(user_id=callback.from_user.id, language=False, username='@' + callback.from_user.username)
     await state.finish()
 
     sentence_db = SentencesDB()

@@ -86,7 +86,20 @@ class SentencesDB:
             self.__base.commit()
             return True
         except Exception as ex:
-            logger.warning(f'An error occurred while adding photo_id to the sentences entity\n'
+            logger.warning(f'An error occurred while adding photo to the sentences entity\n'
+                           f'{ex}')
+            return False
+
+    def set_video_in_sentence(self, type_sentence: str, language: bool, video_id: str) -> bool:
+        try:
+            self.__cur.execute('UPDATE sentences '
+                               'SET video_id = ? '
+                               'WHERE type_sentence = ? and language = ?',
+                               (video_id, type_sentence, language))
+            self.__base.commit()
+            return True
+        except Exception as ex:
+            logger.warning(f'An error occurred while adding video_id to the sentences entity\n'
                            f'{ex}')
             return False
 
@@ -108,6 +121,16 @@ class SentencesDB:
         photo_id = self.__cur.fetchone()
         if photo_id:
             return photo_id[0]
+        return 0
+
+    def get_video_id(self, type_sentence: str, language: bool):
+        self.__cur.execute('SELECT video_id '
+                           'FROM sentences '
+                           'WHERE type_sentence = ? and language = ?',
+                           (type_sentence, language))
+        video_id = self.__cur.fetchone()
+        if video_id:
+            return video_id[0]
         return 0
 
     def __del__(self):
@@ -172,14 +195,14 @@ class UsersDB:
             return register_status[0]
         return False
 
-    def add_user(self, user_id: int, language: bool) -> bool:
+    def add_user(self, user_id: int, language: bool, username: str) -> bool:
         """
         Добавление пользователя в текущую сущность
         """
         try:
-            self.__cur.execute('INSERT INTO users(user_id, language) '
-                               'VALUES(?, ?)',
-                               (user_id, language))
+            self.__cur.execute('INSERT INTO users(user_id, language, username) '
+                               'VALUES(?, ?, ?)',
+                               (user_id, language, username))
             self.__base.commit()
             return True
         except Exception as ex:

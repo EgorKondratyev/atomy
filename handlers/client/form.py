@@ -234,7 +234,8 @@ def register_form_handlers():
     sentences_db = SentencesDB()
 
     rus_form, en_form = get_sentences(type_sentence='form_button', sentences_db=sentences_db)
-    dp.register_message_handler(form_first, Text(equals=[rus_form, en_form]), state=None)
+    rus_form_2, en_form_2 = get_sentences(type_sentence='get_form_video_presentation', sentences_db=sentences_db)
+    dp.register_message_handler(form_first, Text(equals=[rus_form, en_form, rus_form_2, en_form_2]), state=None)
 
     dp.register_message_handler(form_second, state=FormFSM.get_city)
     dp.register_message_handler(form_third, state=FormFSM.get_full_name)

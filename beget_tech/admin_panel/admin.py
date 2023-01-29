@@ -13,10 +13,10 @@ class UsersAdmin(admin.ModelAdmin):
     search_fields = ('user_id', 'full_name')
     list_filter = ('language', )
 
-    fields = ('user_id', 'get_language_html', 'city', 'full_name', 'sex', 'birth_date', 'phone_number', 'postal_code',
-              'address', 'email', 'purpose_registration')
+    fields = ('user_id', 'get_username', 'get_language_html', 'city', 'full_name', 'sex', 'birth_date', 'phone_number',
+              'postal_code', 'address', 'email', 'purpose_registration')
     readonly_fields = ('user_id', 'get_language_html', 'city', 'full_name', 'sex', 'birth_date', 'phone_number',
-                       'postal_code', 'address', 'email', 'purpose_registration')
+                       'postal_code', 'address', 'email', 'purpose_registration', 'get_username')
 
     def get_queryset(self, request):
         qs = super(UsersAdmin, self).get_queryset(request)
@@ -28,6 +28,11 @@ class UsersAdmin(admin.ModelAdmin):
         else:
             return 'Английский'
     get_language_html.short_description = 'Язык'
+
+    def get_username(self, object):
+        if object.username:
+            return f'ID: {object.username} | Ссылка: https://t.me/{object.username[1:]}'
+    get_username.short_description = 'Ссылка на аккаунт'
 
 
 admin.site.register(Users, UsersAdmin)
@@ -49,6 +54,8 @@ class SentencesAdmin(admin.ModelAdmin):
     )
     readonly_fields = ('type_sentence', 'get_language_html', 'get_html_photo')
     empty_value_display = 'Пусто'
+    list_max_show_all = 250
+    list_per_page = 160
 
     def get_language_html(self, object):
         if object.language:
